@@ -57,7 +57,8 @@
     <label for="hang_4_input">7.1</label>
     <br>
     <label for="ar_input">Ár:</label>
-    <input type="number" name="ar" id="ar_input" placeholder="Ár">
+    <input type="text" name="ar" id="ar_input" placeholder="Ár">
+    <!-- <input type="number" name="ar" id="ar_input" placeholder="Ár"> -->
     <br>
     <button type="reset">Kiürít</button>
     <button type="submit">Felvétel</button>
@@ -83,6 +84,12 @@
     }
     if (!isset($_POST['ar']) || empty($_POST['ar'])) {
       $hiba .= "Ár megadása kötelező!<br>";
+    } else if (!is_numeric($_POST['ar'])) {
+      $hiba .= "Az ár csak szám lehet!<br>";
+    } else if (round($_POST['ar']) != $_POST['ar']) {
+      $hiba .= "Az ár csak egész szám lehet!<br>";
+    } else if ($_POST['ar'] <= 0) {
+      $hiba .= "Az ár csak 0-nál nagyobb szám lehet!<br>";
     }
     echo "<br>" . $hiba;
   }
