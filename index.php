@@ -44,7 +44,7 @@
     ];
     ?>
     <table class="table table-striped table-bordered">
-      <thead>
+      <thead style="text-align: center; vertical-align: middle; background: rgba(0, 255, 0, 10%)">
         <tr>
           <th rowspan="2">#</th>
           <th rowspan="2">Megnevezés</th>
@@ -58,7 +58,7 @@
           <th>2.0</th>
           <th>5.1</th>
           <th>7.1</th>
-        <tr>
+        </tr>
       </thead>
       <tbody>
         <?php
@@ -68,7 +68,7 @@
           $i++;
           $adatok = explode(";", trim($sor)); ?>
           <tr>
-            <td><?php echo $i ?></td>
+            <td style="text-align: right;"><?php echo $i ?></td>
             <td><?php echo $adatok[0] ?></td>
             <?php switch ($adatok[1]) {
               case 'jack':
@@ -87,18 +87,18 @@
             ?>
             <td><?php echo $adatok[1] ?></td>
             <td><?php echo $szin_lista[$adatok[2]] ?></td>
-            <td><?php echo $adatok[3] ?></td>
-            <td><?php echo $adatok[4] ?></td>
-            <td><?php echo $adatok[5] ?></td>
-            <td><?php echo $adatok[6] ?></td>
-            <td><?php echo $adatok[7] ?></td>
+            <td style="text-align: center;"><?php echo $adatok[3] ?></td>
+            <td style="text-align: center;"><?php echo $adatok[4] ?></td>
+            <td style="text-align: center;"><?php echo $adatok[5] ?></td>
+            <td style="text-align: center;"><?php echo $adatok[6] ?></td>
+            <td style="text-align: right;"><?php echo $adatok[7] ?></td>
           </tr>
         <?php
         }
         fclose($file);
         ?>
       </tbody>
-      <tfoot>
+      <tfoot style="text-align: center; vertical-align: middle; background: rgba(0, 255, 0, 10%)">
         <tr>
           <th rowspan="2">#</th>
           <th rowspan="2">Megnevezés</th>
@@ -112,7 +112,7 @@
         </tr>
         <tr>
           <th colspan="4">Hangcsatorna</th>
-        <tr>
+        </tr>
       </tfoot>
     </table>
   </main>
