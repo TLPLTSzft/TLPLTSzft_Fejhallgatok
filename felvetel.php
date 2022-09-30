@@ -8,6 +8,48 @@
   <title>Fejhallgatók</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function validalas() {
+      const megnevezes = document.forms['fejhallgato_felvetel']['megnevezes'].value;
+      const csatlakozo = document.forms['fejhallgato_felvetel']['csatlakozo'].value;
+      const szin = document.forms['fejhallgato_felvetel']['szin'].value;
+      const hang_1 = document.getElementById("hang_1_input");
+      const hang_2 = document.getElementById("hang_2_input");
+      const hang_3 = document.getElementById("hang_3_input");
+      const hang_4 = document.getElementById("hang_4_input");
+      const ar = document.forms['fejhallgato_felvetel']['ar'].value;
+      if (megnevezes.trim().length == 0) {
+        alert("Megnevezés mező kitöltése kötelező!");
+        return false;
+      }
+      if (csatlakozo.trim().length == 0) {
+        alert("Csatlakozó kiválasztása kötelező!");
+        return false;
+      }
+      if (szin.trim().length == 0) {
+        alert("Szín kiválasztása kötelező!");
+        return false;
+      }
+      if (hang_1.checked == false && hang_2.checked == false && hang_3.checked == false && hang_4.checked == false) {
+        alert("Legalább 1 hangcsatorna kiválasztása kötelező!");
+        return false;
+      }
+      if (ar.trim().length == 0) {
+        alert("Ár megadása kötelező!");
+        return false;
+      } else if (isNaN(ar)) {
+        alert("Az ár csak szám lehet!");
+        return false;
+      } else if (ar != parseInt(ar)) {
+        alert("Az ár csak egész szám lehet!");
+        return false;
+      } else if (ar <= 0) {
+        alert("Az ár csak 0-nál nagyobb szám lehet!");
+        return false;
+      }
+      return true;
+    }
+  </script>
 </head>
 
 <body>
@@ -43,7 +85,7 @@
       'fekete' => "Fekete",
     ];
     ?>
-    <form action="felvetel.php" method="post" name="fejhallgato_felvetel" id="fejhallgato_felvetel">
+    <form action="felvetel.php" method="post" name="fejhallgato_felvetel" onsubmit="return validalas();">
       <div class="mb-3">
         <label for="megnevezes_input">Megnevezés:</label>
         <input class="form-control" type="text" name="megnevezes" id="megnevezes_input" placeholder="Megnevezés">
@@ -80,7 +122,8 @@
       </div>
       <div class="mb-3">
         <label for="ar_input">Ár:</label>
-        <input class="form-control" type="number" name="ar" id="ar_input" placeholder="Ár">
+        <input class="form-control" type="text" name="ar" id="ar_input" placeholder="Ár">
+        <!-- <input class="form-control" type="number" name="ar" id="ar_input" placeholder="Ár"> -->
       </div>
       <button class="btn btn-outline-danger" type="reset">Kiürít</button>
       <button class="btn btn-outline-secondary" type="submit">Felvétel</button>
