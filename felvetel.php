@@ -57,16 +57,17 @@
     <label for="hang_4_input">7.1</label>
     <br>
     <label for="ar_input">Ár:</label>
-    <input type="text" name="ar" id="ar_input" placeholder="Ár">
-    <!-- <input type="number" name="ar" id="ar_input" placeholder="Ár"> -->
+    <!-- <input type="text" name="ar" id="ar_input" placeholder="Ár"> -->
+    <input type="number" name="ar" id="ar_input" placeholder="Ár">
     <br>
     <button type="reset">Kiürít</button>
     <button type="submit">Felvétel</button>
   </form>
 
   <?php if (isset($_POST) && !empty($_POST)) { ?>
-    <br> <?php echo  var_dump($_POST); ?> <br>
-  <?php
+    <!-- <br> <?php echo var_dump($_POST); ?> -->
+    <!-- <br> <?php echo implode(" : ", $_POST); ?> -->
+    <?php
     $hiba = "";
     if (!isset($_POST['megnevezes']) || empty($_POST['megnevezes'])) {
       $hiba .= "Megnevezés mező kitöltése kötelező!<br>";
@@ -91,12 +92,18 @@
     } else if ($_POST['ar'] <= 0) {
       $hiba .= "Az ár csak 0-nál nagyobb szám lehet!<br>";
     }
-    echo "<br>" . $hiba;
-  }
-  if ($hiba == "") {
-    echo "siker";
+    if ($hiba == "") {
+      $file = fopen("adatok.csv", "a");
+      $sor = implode(";", $_POST) . PHP_EOL;
+      fwrite($file, $sor); ?>
+      <div><br>Sikeres felvétel!</div>
+    <?php } else { ?>
+      <div><?php echo "<br>" . $hiba; ?></div>
+  <?php
+    }
   }
   ?>
+
 
 </body>
 
