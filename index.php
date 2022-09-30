@@ -52,6 +52,21 @@
         <tr>
           <td><?php echo $i ?></td>
           <td><?php echo $adatok[0] ?></td>
+          <?php switch ($adatok[1]) {
+            case 'jack':
+              $adatok[1] = "3,5mm Jack";
+              break;
+            case 'usb':
+              $adatok[1] = "USB";
+              break;
+            case 'bluetooth':
+              $adatok[1] = "Bluetooth";
+              break;
+            case 'wireless':
+              $adatok[1] = "Wireless";
+              break;
+          }
+          ?>
           <td><?php echo $adatok[1] ?></td>
           <td><?php echo $szin_lista[$adatok[2]] ?></td>
           <td><?php echo $adatok[3] ?></td>
@@ -62,6 +77,7 @@
         </tr>
       <?php
       }
+      fclose($file);
       ?>
     </tbody>
     <tfoot>

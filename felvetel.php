@@ -102,6 +102,7 @@
       // $sor = implode(";", $_POST) . PHP_EOL;
       $sor = $_POST['megnevezes'] . ';' . $_POST['csatlakozo'] . ';' . $_POST['szin'] . ';' . $_POST['hang_1'] . ';' . $_POST['hang_2'] . ';' . $_POST['hang_3'] . ';' . $_POST['hang_4'] . ';' . $_POST['ar'] . PHP_EOL;
       fwrite($file, $sor); ?>
+      fclose($file);
       <div><br>Sikeres felvétel!</div>
     <?php } else { ?>
       <div><?php echo "<br>" . $hiba; ?></div>
