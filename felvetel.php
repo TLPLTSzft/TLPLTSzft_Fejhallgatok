@@ -57,7 +57,6 @@
     <label for="hang_4_input">7.1</label>
     <br>
     <label for="ar_input">Ár:</label>
-    <!-- <input type="text" name="ar" id="ar_input" placeholder="Ár"> -->
     <input type="number" name="ar" id="ar_input" placeholder="Ár">
     <br>
     <button type="reset">Kiürít</button>
@@ -65,8 +64,6 @@
   </form>
 
   <?php if (isset($_POST) && !empty($_POST)) { ?>
-    <!-- <br> <?php echo var_dump($_POST); ?> -->
-    <!-- <br> <?php echo implode(" : ", $_POST); ?> -->
     <?php
     $hiba = "";
     if (!isset($_POST['megnevezes']) || empty($_POST['megnevezes'])) {
@@ -81,7 +78,12 @@
       $hiba .= "Színt a legördülő listából kell választani!<br>";
     }
     if (!isset($_POST['hang_1']) && !isset($_POST['hang_2']) && !isset($_POST['hang_3']) && !isset($_POST['hang_4'])) {
-      $hiba .= "Hangcsatorna kiválasztása kötelező!<br>";
+      $hiba .= "Legalább 1 hangcsatorna kiválasztása kötelező!<br>";
+    } else {
+      $_POST['hang_1'] = isset($_POST['hang_1']) ? "x" : "-";
+      $_POST['hang_2'] = isset($_POST['hang_2']) ? "x" : "-";
+      $_POST['hang_3'] = isset($_POST['hang_3']) ? "x" : "-";
+      $_POST['hang_4'] = isset($_POST['hang_4']) ? "x" : "-";
     }
     if (!isset($_POST['ar']) || empty($_POST['ar'])) {
       $hiba .= "Ár megadása kötelező!<br>";
@@ -92,9 +94,13 @@
     } else if ($_POST['ar'] <= 0) {
       $hiba .= "Az ár csak 0-nál nagyobb szám lehet!<br>";
     }
+    // echo var_dump($_POST);
+    // echo implode(" : ", $_POST);
+
     if ($hiba == "") {
       $file = fopen("adatok.csv", "a");
-      $sor = implode(";", $_POST) . PHP_EOL;
+      // $sor = implode(";", $_POST) . PHP_EOL;
+      $sor = $_POST['megnevezes'] . ';' . $_POST['csatlakozo'] . ';' . $_POST['szin'] . ';' . $_POST['hang_1'] . ';' . $_POST['hang_2'] . ';' . $_POST['hang_3'] . ';' . $_POST['hang_4'] . ';' . $_POST['ar'] . PHP_EOL;
       fwrite($file, $sor); ?>
       <div><br>Sikeres felvétel!</div>
     <?php } else { ?>
