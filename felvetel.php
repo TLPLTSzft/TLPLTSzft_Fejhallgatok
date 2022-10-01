@@ -88,11 +88,11 @@
     <form action="felvetel.php" method="post" name="fejhallgato_felvetel" onsubmit="return validalas();">
       <div class="mb-3">
         <label for="megnevezes_input">Megnevezés:</label>
-        <input class="form-control" type="text" name="megnevezes" id="megnevezes_input" placeholder="Megnevezés">
+        <input class="form-control" type="text" name="megnevezes" id="megnevezes_input" placeholder="Megnevezés" required>
       </div>
       <div class="mb-3">
         <label>Csatlakozó:</label>
-        <input class="form-check-input" type="radio" name="csatlakozo" id="jack_input" value="jack">
+        <input class="form-check-input" type="radio" name="csatlakozo" id="jack_input" value="jack" required>
         <label class="form-check-label" for="jack_input">3,5mm Jack</label>
         <input class="form-check-input" type="radio" name="csatlakozo" id="usb_input" value="usb">
         <label class="form-check-label" for="usb_input">USB</label>
@@ -103,7 +103,7 @@
       </div>
       <div class="mb-3">
         <label for="szin_input">Szín:</label>
-        <select class="form-select" name="szin" id="szin_input">
+        <select class="form-select" name="szin" id="szin_input" required>
           <?php foreach ($szin_lista as $key => $value) : ?>
             <option value="<?php echo $key ?>"><?php echo $value ?></option>
           <?php endforeach ?>
@@ -122,8 +122,8 @@
       </div>
       <div class="mb-3">
         <label for="ar_input">Ár:</label>
-        <input class="form-control" type="text" name="ar" id="ar_input" placeholder="Ár">
-        <!-- <input class="form-control" type="number" name="ar" id="ar_input" placeholder="Ár"> -->
+        <!-- <input class="form-control" type="text" name="ar" id="ar_input" placeholder="Ár"> -->
+        <input class="form-control" type="number" name="ar" id="ar_input" placeholder="Ár" required>
       </div>
       <button class="btn btn-outline-danger" type="reset">Kiürít</button>
       <button class="btn btn-outline-secondary" type="submit">Felvétel</button>
